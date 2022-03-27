@@ -1,6 +1,8 @@
 package user
 
 import (
+	"context"
+
 	"github.com/pocket7878/go-ddd-learning/domain/user"
 )
 
@@ -12,13 +14,13 @@ func NewUserDeactivateUseCase(userRepository user.UserRepository) *UserDeactivat
 	return &UserDeactivateUseCase{userRepository}
 }
 
-func (u *UserDeactivateUseCase) DeactivateUser(userId user.UserId) error {
-	user, err := u.userRepository.FindById(userId)
+func (u *UserDeactivateUseCase) DeactivateUser(ctx context.Context, userId user.UserId) error {
+	user, err := u.userRepository.FindById(ctx, userId)
 	if err != nil {
 		return err
 	}
 
 	user.Deactivate()
 
-	return u.userRepository.Save(user)
+	return u.userRepository.Save(ctx, user)
 }

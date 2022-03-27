@@ -19,7 +19,7 @@ func NewUserRdbRepository(client ent.Client) *UserRdbRepository {
 func (r *UserRdbRepository) FindById(ctx context.Context, id userDomain.UserId) (*userDomain.User, error) {
 	u, err := r.client.User.
 		Query().
-		Where(entUser.ID(*id.Value())).
+		Where(entUser.ID(id.Value())).
 		Only(ctx)
 
 	if err != nil {
@@ -32,8 +32,8 @@ func (r *UserRdbRepository) FindById(ctx context.Context, id userDomain.UserId) 
 
 func (r *UserRdbRepository) Save(ctx context.Context, user *userDomain.User) error {
 	_, err := r.client.User.Create().
-		SetID(*user.UserId().Value()).
-		SetName(*user.UserName().Value()).
+		SetID(user.UserId().Value()).
+		SetName(user.UserName().Value()).
 		SetStatus(entUser.Status(*user.UserStatus())).
 		Save(ctx)
 

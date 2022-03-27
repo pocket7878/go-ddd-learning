@@ -1,6 +1,8 @@
 package task
 
 import (
+	"context"
+
 	"github.com/pocket7878/go-ddd-learning/domain/task"
 )
 
@@ -12,13 +14,13 @@ func NewTaskPostponeUseCase(taskRepository task.TaskRepository) *TaskPostponeUse
 	return &TaskPostponeUseCase{taskRepository}
 }
 
-func (t *TaskPostponeUseCase) PostponeTask(taskId task.TaskId) error {
-	task, err := t.taskRepository.FindById(taskId)
+func (t *TaskPostponeUseCase) PostponeTask(ctx context.Context, taskId task.TaskId) error {
+	task, err := t.taskRepository.FindById(ctx, taskId)
 	if err != nil {
 		return err
 	}
 
 	task.Postpone()
 
-	return t.taskRepository.Save(task)
+	return t.taskRepository.Save(ctx, task)
 }
