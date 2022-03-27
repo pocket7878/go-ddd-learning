@@ -1,10 +1,10 @@
 package task
 
-type TaskStatus int
+type TaskStatus string
 
 const (
-	Undone TaskStatus = iota + 1
-	Done
+	Undone TaskStatus = "undone"
+	Done              = "done"
 )
 
 func (s *TaskStatus) String() string {

@@ -1,6 +1,8 @@
 package task
 
+import "context"
+
 type TaskRepository interface {
-	FindById(id TaskId) (*Task, error)
-	Save(task *Task) error
+	FindById(ctx context.Context, id TaskId) (*Task, error)
+	Save(ctx context.Context, task *Task) error
 }

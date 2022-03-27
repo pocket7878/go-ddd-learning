@@ -1,10 +1,10 @@
 package user
 
-type UserStatus int
+type UserStatus string
 
 const (
-	Active UserStatus = iota + 1
-	Inactive
+	Active   UserStatus = "active"
+	Inactive            = "inactive"
 )
 
 func (s *UserStatus) String() string {

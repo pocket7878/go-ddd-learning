@@ -9,6 +9,10 @@ func NewUserName(value string) *UserName {
 	return &UserName{value}
 }
 
+func ReconstructUserName(value string) *UserName {
+	return &UserName{value}
+}
+
 func (name *UserName) Value() string {
 	return name.value
 }

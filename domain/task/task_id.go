@@ -13,6 +13,10 @@ func NewTaskId() *TaskId {
 	return &TaskId{uuid.String()}
 }
 
+func ReconstructTaskId(value string) *TaskId {
+	return &TaskId{value}
+}
+
 func (id *TaskId) Value() string {
 	return id.value
 }

@@ -31,8 +31,34 @@ func NewTask(name string, dueDate time.Time) *Task {
 	}
 }
 
+func ReconstructTask(taskId TaskId, name string, taskStatus TaskStatus, postponeCount int, dueDate time.Time) *Task {
+	return &Task{
+		taskId:        taskId,
+		name:          name,
+		taskStatus:    taskStatus,
+		postponeCount: postponeCount,
+		dueDate:       dueDate,
+	}
+}
+
 func (t *Task) TaskId() *TaskId {
 	return &t.taskId
+}
+
+func (t *Task) Name() string {
+	return t.name
+}
+
+func (t *Task) TaskStatus() *TaskStatus {
+	return &t.taskStatus
+}
+
+func (t *Task) PostponeCount() int {
+	return t.postponeCount
+}
+
+func (t *Task) DueDate() time.Time {
+	return t.dueDate
 }
 
 func (task *Task) Postpone() error {

@@ -13,6 +13,10 @@ func NewUserId() *UserId {
 	return &UserId{uuid.String()}
 }
 
+func ReconstructUserId(value string) *UserId {
+	return &UserId{value}
+}
+
 func (id *UserId) Value() string {
 	return id.value
 }

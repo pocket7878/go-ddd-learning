@@ -14,10 +14,26 @@ func NewUser(name UserName) *User {
 	}
 }
 
+func ReconstructUser(id UserId, name UserName, status UserStatus) *User {
+	return &User{
+		id:     id,
+		name:   name,
+		status: status,
+	}
+}
+
 func (u *User) Deactivate() {
 	u.status = Inactive
 }
 
-func (u *User) UserId() UserId {
-	return u.id
+func (u *User) UserId() *UserId {
+	return &u.id
+}
+
+func (u *User) UserName() *UserName {
+	return &u.name
+}
+
+func (u *User) UserStatus() *UserStatus {
+	return &u.status
 }
