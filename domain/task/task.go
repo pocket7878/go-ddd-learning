@@ -31,6 +31,10 @@ func NewTask(name string, dueDate time.Time) *Task {
 	}
 }
 
+func (t *Task) TaskId() *TaskId {
+	return &t.taskId
+}
+
 func (task *Task) Postpone() error {
 	err := task.validatePostPoneCount()
 	if err != nil {

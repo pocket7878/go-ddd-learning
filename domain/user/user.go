@@ -6,10 +6,18 @@ type User struct {
 	status UserStatus
 }
 
-func NewUser(id UserId, name UserName) *User {
-	return &User{id, name, Inactive}
+func NewUser(name UserName) *User {
+	return &User{
+		id:     *NewUserId(),
+		name:   name,
+		status: Inactive,
+	}
 }
 
 func (u *User) Deactivate() {
 	u.status = Inactive
+}
+
+func (u *User) UserId() UserId {
+	return u.id
 }

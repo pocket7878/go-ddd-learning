@@ -8,7 +8,7 @@ type UserId struct {
 	value string
 }
 
-func NewUserId(value int) *UserId {
+func NewUserId() *UserId {
 	uuid := uuid.New()
 	return &UserId{uuid.String()}
 }
