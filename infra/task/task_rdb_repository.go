@@ -34,7 +34,8 @@ func (r *TaskRdbRepository) Save(ctx context.Context, task *taskDomain.Task) err
 		SetTaskStatus(entTask.TaskStatus(*task.TaskStatus())).
 		SetPostponeCount(task.PostponeCount()).
 		SetDueDate(task.DueDate()).
-		Save(ctx)
+		OnConflict().UpdateNewValues().
+		ID(ctx)
 
 	if err != nil {
 		return err

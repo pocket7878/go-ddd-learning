@@ -32,7 +32,7 @@ func (t *TaskController) CreateTask(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(201, gin.H{"id": taskId.Value()})
+	ctx.JSON(201, NewTaskJsonResponseBody(taskId))
 }
 
 func (t *TaskController) PosponeTask(ctx *gin.Context) {

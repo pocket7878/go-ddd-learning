@@ -35,7 +35,8 @@ func (r *UserRdbRepository) Save(ctx context.Context, user *userDomain.User) err
 		SetID(user.UserId().Value()).
 		SetName(user.UserName().Value()).
 		SetStatus(entUser.Status(*user.UserStatus())).
-		Save(ctx)
+		OnConflict().UpdateNewValues().
+		ID(ctx)
 
 	if err != nil {
 		return err

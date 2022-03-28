@@ -14,13 +14,17 @@ func NewUserDeactivateUseCase(userRepository user.UserRepository) *UserDeactivat
 	return &UserDeactivateUseCase{userRepository}
 }
 
-func (u *UserDeactivateUseCase) DeactivateUser(ctx context.Context, userId user.UserId) error {
+func (u *UserDeactivateUseCase) DeactivateUser(ctx context.Context, userId user.UserId) (*user.User, error) {
 	user, err := u.userRepository.FindById(ctx, userId)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	user.Deactivate()
+	err = u.userRepository.Save(ctx, user)
+	if err != nil {
+		return nil, err
+	}
 
-	return u.userRepository.Save(ctx, user)
+	return user, nil
 }

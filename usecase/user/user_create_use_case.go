@@ -14,7 +14,7 @@ func NewUserCreateUseCase(userRepository user.UserRepository) *UserCreateUseCase
 	return &UserCreateUseCase{userRepository}
 }
 
-func (u *UserCreateUseCase) CreateUser(ctx context.Context, name string) (*user.UserId, error) {
+func (u *UserCreateUseCase) CreateUser(ctx context.Context, name string) (*user.User, error) {
 	userName := user.NewUserName(name)
 	user := user.NewUser(*userName)
 	err := u.userRepository.Save(ctx, user)
@@ -22,7 +22,5 @@ func (u *UserCreateUseCase) CreateUser(ctx context.Context, name string) (*user.
 		return nil, err
 	}
 
-	userId := user.UserId()
-
-	return userId, nil
+	return user, nil
 }

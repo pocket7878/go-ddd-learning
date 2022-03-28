@@ -20,23 +20,23 @@ func NewUserController(userCreateUseCase userUseCase.UserCreateUseCase, userDeac
 
 func (u *UserController) CreateUser(ctx *gin.Context) {
 	userName := ctx.PostForm("name")
-	userId, err := u.userCreateUseCase.CreateUser(ctx, userName)
+	user, err := u.userCreateUseCase.CreateUser(ctx, userName)
 	if err != nil {
 		ctx.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
 
-	ctx.JSON(201, gin.H{"id": userId.Value()})
+	ctx.JSON(201, NewUserJsonResponseBody(user))
 }
 
 func (u *UserController) DeactivateUser(ctx *gin.Context) {
 	userIdString := ctx.PostForm("id")
 	userId := userDomain.ReconstructUserId(userIdString)
-	err := u.userDeactivateUseCase.DeactivateUser(ctx, *userId)
+	user, err := u.userDeactivateUseCase.DeactivateUser(ctx, *userId)
 	if err != nil {
 		ctx.JSON(422, gin.H{"error": err.Error()})
 		return
 	}
 
-	ctx.JSON(204, gin.H{})
+	ctx.JSON(200, NewUserJsonResponseBody(user))
 }
