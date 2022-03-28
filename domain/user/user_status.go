@@ -10,9 +10,9 @@ const (
 func (s *UserStatus) String() string {
 	switch *s {
 	case Active:
-		return "Active"
+		return "active"
 	case Inactive:
-		return "Inactive"
+		return "inactive"
 	default:
 		panic("Unknown UserStatus")
 	}

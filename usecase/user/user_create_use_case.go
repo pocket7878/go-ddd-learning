@@ -15,9 +15,12 @@ func NewUserCreateUseCase(userRepository user.UserRepository) *UserCreateUseCase
 }
 
 func (u *UserCreateUseCase) CreateUser(ctx context.Context, name string) (*user.User, error) {
-	userName := user.NewUserName(name)
+	userName, err := user.NewUserName(name)
+	if err != nil {
+		return nil, err
+	}
 	user := user.NewUser(*userName)
-	err := u.userRepository.Save(ctx, user)
+	err = u.userRepository.Save(ctx, user)
 	if err != nil {
 		return nil, err
 	}

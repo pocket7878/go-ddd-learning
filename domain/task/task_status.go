@@ -10,9 +10,9 @@ const (
 func (s *TaskStatus) String() string {
 	switch *s {
 	case Undone:
-		return "Undone"
+		return "undone"
 	case Done:
-		return "Done"
+		return "done"
 	default:
 		panic("Unknown TaskStatus")
 	}
