@@ -9,14 +9,19 @@ import (
 	"github.com/pocket7878/go-ddd-learning/infra/ent/migrate"
 	taskInfra "github.com/pocket7878/go-ddd-learning/infra/task"
 	userInfra "github.com/pocket7878/go-ddd-learning/infra/user"
+	"github.com/pocket7878/go-ddd-learning/presentation/docs"
 	taskPresentation "github.com/pocket7878/go-ddd-learning/presentation/task"
 	userPresentation "github.com/pocket7878/go-ddd-learning/presentation/user"
 	taskUseCase "github.com/pocket7878/go-ddd-learning/usecase/task"
 	userUseCase "github.com/pocket7878/go-ddd-learning/usecase/user"
 
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
+// @BasePath /
 func main() {
 	client, err := ent.Open("sqlite3", "file:ent?mode=memory&cache=shared&_fk=1")
 	if err != nil {
@@ -32,12 +37,15 @@ func main() {
 	taskController := BuildTaskController(*client)
 
 	r := gin.Default()
+	docs.SwaggerInfo.BasePath = "/"
 	r.POST("/users", userController.CreateUser)
 	r.PATCH("/users/deactivated", userController.DeactivateUser)
 	r.POST("/tasks", taskController.CreateTask)
 	r.PATCH("/tasks/postponed", taskController.PosponeTask)
 
-	r.Run()
+	// Swagger
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+	r.Run(":8080")
 }
 
 func RunMigrations(client ent.Client) error {

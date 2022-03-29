@@ -1,0 +1,132 @@
+basePath: /
+definitions:
+  task.CreateTaskParams:
+    properties:
+      due_date:
+        type: string
+      name:
+        type: string
+    type: object
+  task.PostponeTaskParams:
+    properties:
+      id:
+        type: string
+    type: object
+  task.TaskJsonResponseBody:
+    properties:
+      due_date:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      postpone_count:
+        type: integer
+      status:
+        type: string
+    type: object
+  user.CreateUserParams:
+    properties:
+      name:
+        type: string
+    type: object
+  user.DeactivateUserParams:
+    properties:
+      id:
+        type: string
+    type: object
+  user.UserJsonResponseBody:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      status:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /tasks:
+    post:
+      consumes:
+      - application/json
+      description: create Task
+      parameters:
+      - description: create task
+        in: body
+        name: createTaskParam
+        required: true
+        schema:
+          $ref: '#/definitions/task.CreateTaskParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/task.TaskJsonResponseBody'
+      tags:
+      - task
+  /tasks/postponed:
+    patch:
+      consumes:
+      - application/json
+      description: postpone Task
+      parameters:
+      - description: postpone task
+        in: body
+        name: postponeTaskParam
+        required: true
+        schema:
+          $ref: '#/definitions/task.PostponeTaskParams'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: ""
+      tags:
+      - task
+  /users:
+    post:
+      consumes:
+      - application/json
+      description: create User
+      parameters:
+      - description: create user
+        in: body
+        name: createUserParam
+        required: true
+        schema:
+          $ref: '#/definitions/user.CreateUserParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.UserJsonResponseBody'
+      tags:
+      - user
+  /users/deactivated:
+    patch:
+      consumes:
+      - application/json
+      description: create User
+      parameters:
+      - description: deactivate user
+        in: body
+        name: deactivateUserParam
+        required: true
+        schema:
+          $ref: '#/definitions/user.DeactivateUserParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.UserJsonResponseBody'
+      tags:
+      - user
+swagger: "2.0"
