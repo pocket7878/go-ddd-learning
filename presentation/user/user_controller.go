@@ -30,9 +30,9 @@ func (u *UserController) CreateUser(ctx *gin.Context) {
 }
 
 func (u *UserController) DeactivateUser(ctx *gin.Context) {
-	userIdString := ctx.PostForm("id")
-	userId := userDomain.ReconstructUserId(userIdString)
-	user, err := u.userDeactivateUseCase.DeactivateUser(ctx, *userId)
+	userIDString := ctx.PostForm("id")
+	userID := userDomain.ReconstructUserID(userIDString)
+	user, err := u.userDeactivateUseCase.DeactivateUser(ctx, *userID)
 	if err != nil {
 		ctx.JSON(422, gin.H{"error": err.Error()})
 		return

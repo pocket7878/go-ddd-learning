@@ -1,20 +1,20 @@
 package user
 
 type User struct {
-	id     UserId
+	id     UserID
 	name   UserName
 	status UserStatus
 }
 
 func NewUser(name UserName) *User {
 	return &User{
-		id:     *NewUserId(),
+		id:     *NewUserID(),
 		name:   name,
 		status: Inactive,
 	}
 }
 
-func ReconstructUser(id UserId, name UserName, status UserStatus) *User {
+func ReconstructUser(id UserID, name UserName, status UserStatus) *User {
 	return &User{
 		id:     id,
 		name:   name,
@@ -26,7 +26,7 @@ func (u *User) Deactivate() {
 	u.status = Inactive
 }
 
-func (u *User) UserId() *UserId {
+func (u *User) UserID() *UserID {
 	return &u.id
 }
 

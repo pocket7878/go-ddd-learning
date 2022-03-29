@@ -14,8 +14,8 @@ func NewUserDeactivateUseCase(userRepository user.UserRepository) *UserDeactivat
 	return &UserDeactivateUseCase{userRepository}
 }
 
-func (u *UserDeactivateUseCase) DeactivateUser(ctx context.Context, userId user.UserId) (*user.User, error) {
-	user, err := u.userRepository.FindById(ctx, userId)
+func (u *UserDeactivateUseCase) DeactivateUser(ctx context.Context, userID user.UserID) (*user.User, error) {
+	user, err := u.userRepository.FindByID(ctx, userID)
 	if err != nil {
 		return nil, err
 	}

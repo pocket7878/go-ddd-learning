@@ -14,7 +14,7 @@ var (
 )
 
 type Task struct {
-	taskId        TaskId
+	taskID        TaskID
 	name          string
 	taskStatus    TaskStatus
 	postponeCount int
@@ -23,7 +23,7 @@ type Task struct {
 
 func NewTask(name string, dueDate time.Time) *Task {
 	return &Task{
-		taskId:        *NewTaskId(),
+		taskID:        *NewTaskID(),
 		name:          name,
 		taskStatus:    Undone,
 		postponeCount: 0,
@@ -31,9 +31,9 @@ func NewTask(name string, dueDate time.Time) *Task {
 	}
 }
 
-func ReconstructTask(taskId TaskId, name string, taskStatus TaskStatus, postponeCount int, dueDate time.Time) *Task {
+func ReconstructTask(taskID TaskID, name string, taskStatus TaskStatus, postponeCount int, dueDate time.Time) *Task {
 	return &Task{
-		taskId:        taskId,
+		taskID:        taskID,
 		name:          name,
 		taskStatus:    taskStatus,
 		postponeCount: postponeCount,
@@ -41,8 +41,8 @@ func ReconstructTask(taskId TaskId, name string, taskStatus TaskStatus, postpone
 	}
 }
 
-func (t *Task) TaskId() *TaskId {
-	return &t.taskId
+func (t *Task) TaskID() *TaskID {
+	return &t.taskID
 }
 
 func (t *Task) Name() string {

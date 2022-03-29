@@ -16,7 +16,7 @@ func NewUserRdbRepository(client ent.Client) *UserRdbRepository {
 	return &UserRdbRepository{client}
 }
 
-func (r *UserRdbRepository) FindById(ctx context.Context, id userDomain.UserId) (*userDomain.User, error) {
+func (r *UserRdbRepository) FindByID(ctx context.Context, id userDomain.UserID) (*userDomain.User, error) {
 	u, err := r.client.User.
 		Query().
 		Where(entUser.ID(id.Value())).
@@ -26,13 +26,13 @@ func (r *UserRdbRepository) FindById(ctx context.Context, id userDomain.UserId) 
 		return nil, err
 	}
 
-	domainUser := userDomain.ReconstructUser(*userDomain.ReconstructUserId(u.ID), *userDomain.ReconstructUserName(u.Name), userDomain.UserStatus(u.Status))
+	domainUser := userDomain.ReconstructUser(*userDomain.ReconstructUserID(u.ID), *userDomain.ReconstructUserName(u.Name), userDomain.UserStatus(u.Status))
 	return domainUser, nil
 }
 
 func (r *UserRdbRepository) Save(ctx context.Context, user *userDomain.User) error {
 	_, err := r.client.User.Create().
-		SetID(user.UserId().Value()).
+		SetID(user.UserID().Value()).
 		SetName(user.UserName().Value()).
 		SetStatus(entUser.Status(*user.UserStatus())).
 		OnConflict().UpdateNewValues().

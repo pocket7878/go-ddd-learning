@@ -4,19 +4,19 @@ import (
 	"github.com/google/uuid"
 )
 
-type TaskId struct {
+type TaskID struct {
 	value string
 }
 
-func NewTaskId() *TaskId {
+func NewTaskID() *TaskID {
 	uuid := uuid.New()
-	return &TaskId{uuid.String()}
+	return &TaskID{uuid.String()}
 }
 
-func ReconstructTaskId(value string) *TaskId {
-	return &TaskId{value}
+func ReconstructTaskID(value string) *TaskID {
+	return &TaskID{value}
 }
 
-func (id *TaskId) Value() string {
+func (id *TaskID) Value() string {
 	return id.value
 }

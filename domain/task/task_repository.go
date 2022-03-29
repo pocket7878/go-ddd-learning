@@ -3,6 +3,6 @@ package task
 import "context"
 
 type TaskRepository interface {
-	FindById(ctx context.Context, id TaskId) (*Task, error)
+	FindByID(ctx context.Context, id TaskID) (*Task, error)
 	Save(ctx context.Context, task *Task) error
 }

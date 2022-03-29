@@ -5,14 +5,14 @@ import (
 )
 
 type UserJsonResponseBody struct {
-	Id     string `json:"id"`
+	ID     string `json:"id"`
 	Name   string `json:"name"`
 	Status string `json:"status"`
 }
 
 func NewUserJsonResponseBody(user *user.User) *UserJsonResponseBody {
 	return &UserJsonResponseBody{
-		Id:     user.UserId().Value(),
+		ID:     user.UserID().Value(),
 		Name:   user.UserName().Value(),
 		Status: user.UserStatus().String(),
 	}

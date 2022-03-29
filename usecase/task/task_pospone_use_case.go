@@ -14,8 +14,8 @@ func NewTaskPostponeUseCase(taskRepository task.TaskRepository) *TaskPostponeUse
 	return &TaskPostponeUseCase{taskRepository}
 }
 
-func (t *TaskPostponeUseCase) PostponeTask(ctx context.Context, taskId task.TaskId) error {
-	task, err := t.taskRepository.FindById(ctx, taskId)
+func (t *TaskPostponeUseCase) PostponeTask(ctx context.Context, taskID task.TaskID) error {
+	task, err := t.taskRepository.FindByID(ctx, taskID)
 	if err != nil {
 		return err
 	}

@@ -16,20 +16,20 @@ func NewTaskRdbRepository(client ent.Client) *TaskRdbRepository {
 	return &TaskRdbRepository{client}
 }
 
-func (r *TaskRdbRepository) FindById(ctx context.Context, id taskDomain.TaskId) (*taskDomain.Task, error) {
+func (r *TaskRdbRepository) FindByID(ctx context.Context, id taskDomain.TaskID) (*taskDomain.Task, error) {
 	t, err := r.client.Task.Query().Where(entTask.ID(id.Value())).Only(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	domainTask := taskDomain.ReconstructTask(*taskDomain.ReconstructTaskId(t.ID), t.Name, taskDomain.TaskStatus(t.TaskStatus), t.PostponeCount, t.DueDate)
+	domainTask := taskDomain.ReconstructTask(*taskDomain.ReconstructTaskID(t.ID), t.Name, taskDomain.TaskStatus(t.TaskStatus), t.PostponeCount, t.DueDate)
 
 	return domainTask, nil
 }
 
 func (r *TaskRdbRepository) Save(ctx context.Context, task *taskDomain.Task) error {
 	_, err := r.client.Task.Create().
-		SetID(task.TaskId().Value()).
+		SetID(task.TaskID().Value()).
 		SetName(task.Name()).
 		SetTaskStatus(entTask.TaskStatus(*task.TaskStatus())).
 		SetPostponeCount(task.PostponeCount()).

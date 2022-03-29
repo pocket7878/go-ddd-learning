@@ -7,7 +7,7 @@ import (
 )
 
 type TaskJsonResponseBody struct {
-	TaskId        string    `json:"id"`
+	TaskID        string    `json:"id"`
 	Name          string    `json:"name"`
 	Status        string    `json:"status"`
 	PostponeCount int       `json:"postpone_count"`
@@ -16,7 +16,7 @@ type TaskJsonResponseBody struct {
 
 func NewTaskJsonResponseBody(task *task.Task) *TaskJsonResponseBody {
 	return &TaskJsonResponseBody{
-		TaskId:        task.TaskId().Value(),
+		TaskID:        task.TaskID().Value(),
 		Name:          task.Name(),
 		Status:        task.TaskStatus().String(),
 		PostponeCount: task.PostponeCount(),

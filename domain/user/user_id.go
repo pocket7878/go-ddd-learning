@@ -4,19 +4,19 @@ import (
 	"github.com/google/uuid"
 )
 
-type UserId struct {
+type UserID struct {
 	value string
 }
 
-func NewUserId() *UserId {
+func NewUserID() *UserID {
 	uuid := uuid.New()
-	return &UserId{uuid.String()}
+	return &UserID{uuid.String()}
 }
 
-func ReconstructUserId(value string) *UserId {
-	return &UserId{value}
+func ReconstructUserID(value string) *UserID {
+	return &UserID{value}
 }
 
-func (id *UserId) Value() string {
+func (id *UserID) Value() string {
 	return id.value
 }

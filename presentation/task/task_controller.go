@@ -26,19 +26,19 @@ func (t *TaskController) CreateTask(ctx *gin.Context) {
 		return
 	}
 
-	taskId, err := t.taskCreateUseCase.CreateTask(ctx, taskName, taskDueData)
+	taskID, err := t.taskCreateUseCase.CreateTask(ctx, taskName, taskDueData)
 	if err != nil {
 		ctx.JSON(422, gin.H{"error": err.Error()})
 		return
 	}
 
-	ctx.JSON(201, NewTaskJsonResponseBody(taskId))
+	ctx.JSON(201, NewTaskJsonResponseBody(taskID))
 }
 
 func (t *TaskController) PosponeTask(ctx *gin.Context) {
-	taskIdString := ctx.PostForm("id")
-	taskId := task.ReconstructTaskId(taskIdString)
-	err := t.taskPostponeUseCase.PostponeTask(ctx, *taskId)
+	taskIDString := ctx.PostForm("id")
+	taskID := task.ReconstructTaskID(taskIDString)
+	err := t.taskPostponeUseCase.PostponeTask(ctx, *taskID)
 	if err != nil {
 		ctx.JSON(422, gin.H{"error": err.Error()})
 		return
