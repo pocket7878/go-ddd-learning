@@ -1,11 +1,13 @@
-package user
+package user_test
 
 import (
 	"testing"
+
+	"github.com/pocket7878/go-ddd-learning/domain/user"
 )
 
 func TestUserNameShouldBeAlphaNumeric(t *testing.T) {
-	_, err := NewUserName("_")
+	_, err := user.NewUserName("_")
 	if err == nil {
 		t.Fatalf("NewUserName should return error, but got nil")
 	}
