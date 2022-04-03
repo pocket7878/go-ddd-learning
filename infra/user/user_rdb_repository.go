@@ -9,10 +9,10 @@ import (
 )
 
 type UserRdbRepository struct {
-	client ent.Client
+	client *ent.Client
 }
 
-func NewUserRdbRepository(client ent.Client) *UserRdbRepository {
+func NewUserRdbRepository(client *ent.Client) *UserRdbRepository {
 	return &UserRdbRepository{client}
 }
 

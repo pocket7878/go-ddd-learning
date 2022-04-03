@@ -9,10 +9,10 @@ import (
 )
 
 type TaskRdbRepository struct {
-	client ent.Client
+	client *ent.Client
 }
 
-func NewTaskRdbRepository(client ent.Client) *TaskRdbRepository {
+func NewTaskRdbRepository(client *ent.Client) *TaskRdbRepository {
 	return &TaskRdbRepository{client}
 }
 
