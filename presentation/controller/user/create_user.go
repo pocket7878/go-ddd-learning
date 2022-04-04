@@ -1,6 +1,10 @@
 package user
 
-import "github.com/gin-gonic/gin"
+import (
+	"fmt"
+
+	"github.com/gin-gonic/gin"
+)
 
 type CreateUserParams struct {
 	Name string `json:"name"`
@@ -18,13 +22,13 @@ func (u *UserController) CreateUser(ctx *gin.Context) {
 	var p CreateUserParams
 	err := ctx.BindJSON(&p)
 	if err != nil {
-		ctx.JSON(400, gin.H{"error": err.Error()})
+		ctx.JSON(400, gin.H{"error": fmt.Sprintf("Failed to read parameter: %s", err.Error())})
 		return
 	}
 
 	user, err := u.userCreateUseCase.CreateUser(ctx, p.Name)
 	if err != nil {
-		ctx.JSON(400, gin.H{"error": err.Error()})
+		ctx.JSON(422, gin.H{"error": fmt.Sprintf("Failed to create user: %s", err.Error())})
 		return
 	}
 
