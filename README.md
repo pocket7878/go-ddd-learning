@@ -9,8 +9,16 @@ GoでClean ArchitectureでDDDするサンプル
 
 ## Usage
 
+### Gin
+
 ```
-go run presentation/main.go
+go run presentation/gin/main.go
+```
+
+### gRPC-Gateway
+
+```
+go run presentation/grpc-gateway/main.go
 ```
 
 ### API
