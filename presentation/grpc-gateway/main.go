@@ -13,6 +13,7 @@ import (
 	"github.com/soheilhy/cmux"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/reflection"
 
 	"github.com/pocket7878/go-ddd-learning/infra"
 	gw "github.com/pocket7878/go-ddd-learning/presentation/grpc-gateway/gen/go"
@@ -35,6 +36,7 @@ func run() error {
 
 	// Register gRPC server endpoint
 	s := grpc.NewServer()
+	reflection.Register(s)
 	grpcService := grpc_service.NewGrpcService(client)
 	gw.RegisterGoDDDLearningServiceServer(s, grpcService)
 
