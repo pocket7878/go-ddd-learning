@@ -11,7 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/pocket7878/go-ddd-learning/infra/ent/enttest"
 	entUser "github.com/pocket7878/go-ddd-learning/infra/ent/user"
-	router "github.com/pocket7878/go-ddd-learning/presentation/controller/router"
+	router "github.com/pocket7878/go-ddd-learning/presentation/gin/controller/router"
 )
 
 const apiPath = "/users"
@@ -27,6 +27,26 @@ func TestCreateUserReturn201(t *testing.T) {
 }
 
 func TestCreateUserStoreUserToDb(t *testing.T) {
+	client := enttest.Open(t, "sqlite3", "file:ent?mode=memory&cache=shared&_fk=1")
+	defer client.Close()
+
+	r := router.BuildRouter(client)
+	w := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(w)
+	body := bytes.NewBufferString("{\"name\":\"foo\"}")
+	c.Request, _ = http.NewRequest("POST", apiPath, body)
+	r.ServeHTTP(w, c.Request)
+
+	usersCount, err := client.User.Query().Where(entUser.Name("foo")).Count(context.Background())
+	if err != nil {
+		t.Fatalf("failed to count users: %v", err)
+	}
+	if usersCount != 1 {
+		t.Fatalf("New User not created in database")
+	}
+}
+
+func TestCreateUserRequest(t *testing.T) {
 	client := enttest.Open(t, "sqlite3", "file:ent?mode=memory&cache=shared&_fk=1")
 	defer client.Close()
 

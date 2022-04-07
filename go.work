@@ -3,6 +3,7 @@ go 1.18
 use (
 	./domain
 	./infra
-	./presentation
+	./presentation/grpc-gateway
+	./presentation/gin
 	./usecase
 )

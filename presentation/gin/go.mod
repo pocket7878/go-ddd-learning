@@ -1,13 +1,17 @@
-module github.com/pocket7878/go-ddd-learning/presentation
+module github.com/pocket7878/go-ddd-learning/presentation/gin
 
 go 1.18
 
 require (
+	github.com/gavv/httpexpect/v2 v2.3.1
 	github.com/gin-gonic/gin v1.7.7
 	github.com/mattn/go-sqlite3 v1.14.12
 	github.com/pocket7878/go-ddd-learning/domain v0.0.0-20220328104101-35d9b42ecced
-	github.com/pocket7878/go-ddd-learning/infra v0.0.0-20220328104101-35d9b42ecced
+	github.com/pocket7878/go-ddd-learning/infra v0.0.0-20220404003214-aa4fbb658a6a
 	github.com/pocket7878/go-ddd-learning/usecase v0.0.0-20220328104101-35d9b42ecced
+	github.com/swaggo/files v0.0.0-20210815190702-a29dd2bc99b2
+	github.com/swaggo/gin-swagger v1.4.1
+	github.com/swaggo/swag v1.8.0
 )
 
 require (
@@ -20,11 +24,8 @@ require (
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/andybalholm/brotli v1.0.2 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
-	github.com/cpuguy83/go-md2man/v2 v2.0.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/structs v1.0.0 // indirect
-	github.com/gavv/httpexpect/v2 v2.3.1 // indirect
-	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-openapi/inflect v0.19.0 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
@@ -51,15 +52,9 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sergi/go-diff v1.0.0 // indirect
-	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	github.com/stretchr/testify v1.7.1-0.20210427113832-6241f9ab9942 // indirect
-	github.com/swaggo/files v0.0.0-20210815190702-a29dd2bc99b2 // indirect
-	github.com/swaggo/gin-swagger v1.4.1 // indirect
-	github.com/swaggo/swag v1.8.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
-	github.com/urfave/cli/v2 v2.4.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.27.0 // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f // indirect

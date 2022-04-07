@@ -1,0 +1,247 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "go_ddd_learning.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "GoDDDLearningService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/tasks": {
+      "post": {
+        "operationId": "GoDDDLearningService_CreateTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/go_ddd_learningTaskResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/go_ddd_learningCreateTaskRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GoDDDLearningService"
+        ]
+      }
+    },
+    "/tasks/postponed": {
+      "patch": {
+        "operationId": "GoDDDLearningService_PostponeTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/go_ddd_learningPostponeTaskRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GoDDDLearningService"
+        ]
+      }
+    },
+    "/users": {
+      "post": {
+        "operationId": "GoDDDLearningService_CreateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/go_ddd_learningUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/go_ddd_learningCreateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GoDDDLearningService"
+        ]
+      }
+    },
+    "/users/deactivated": {
+      "patch": {
+        "operationId": "GoDDDLearningService_DeactivateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/go_ddd_learningUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/go_ddd_learningDeactivateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GoDDDLearningService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "go_ddd_learningCreateTaskRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "dueDate": {
+          "type": "string"
+        }
+      }
+    },
+    "go_ddd_learningCreateUserRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "go_ddd_learningDeactivateUserRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "go_ddd_learningPostponeTaskRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "go_ddd_learningTaskResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "postponeCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "dueDate": {
+          "type": "string"
+        }
+      }
+    },
+    "go_ddd_learningUserResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
