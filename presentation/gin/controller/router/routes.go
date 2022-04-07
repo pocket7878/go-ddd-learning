@@ -5,9 +5,9 @@ import (
 	"github.com/pocket7878/go-ddd-learning/infra/ent"
 	taskInfra "github.com/pocket7878/go-ddd-learning/infra/task"
 	userInfra "github.com/pocket7878/go-ddd-learning/infra/user"
-	taskPresentation "github.com/pocket7878/go-ddd-learning/presentation/controller/task"
-	userPresentation "github.com/pocket7878/go-ddd-learning/presentation/controller/user"
-	"github.com/pocket7878/go-ddd-learning/presentation/docs"
+	taskPresentation "github.com/pocket7878/go-ddd-learning/presentation/gin/controller/task"
+	userPresentation "github.com/pocket7878/go-ddd-learning/presentation/gin/controller/user"
+	"github.com/pocket7878/go-ddd-learning/presentation/gin/docs"
 	taskUseCase "github.com/pocket7878/go-ddd-learning/usecase/task"
 	userUseCase "github.com/pocket7878/go-ddd-learning/usecase/user"
 

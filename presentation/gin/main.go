@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/pocket7878/go-ddd-learning/infra"
-	router "github.com/pocket7878/go-ddd-learning/presentation/controller/router"
+	router "github.com/pocket7878/go-ddd-learning/presentation/gin/controller/router"
 
 	_ "github.com/mattn/go-sqlite3"
 )

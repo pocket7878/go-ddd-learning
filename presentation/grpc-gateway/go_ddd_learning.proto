@@ -1,0 +1,67 @@
+syntax = "proto3";
+package go_ddd_learning;
+option go_package = "github.com/pocket7878/go-ddd-learning/presentation/gen/go/go-ddd-learning";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+message CreateUserRequest {
+  string name = 1;
+}
+
+message DeactivateUserRequest {
+	string id = 1;
+}
+
+message UserResponse {
+	string id = 1;
+	string name = 2;
+	string status = 3;
+}
+
+message CreateTaskRequest {
+	string name = 1;
+	string due_date = 2;
+}
+
+message PostponeTaskRequest {
+	string id = 1;
+}
+
+message TaskResponse {
+	string id = 1;
+	string name = 2;
+	string status = 3;
+	int32 postpone_count = 4;
+	string due_date = 5;
+}
+
+service GoDDDLearningService {
+	rpc CreateUser(CreateUserRequest) returns (UserResponse) {
+		option (google.api.http) = {
+			post: "/users"
+			body: "*"
+		};
+	}
+
+	rpc DeactivateUser(DeactivateUserRequest) returns (UserResponse) {
+		option (google.api.http) = {
+			patch: "/users/deactivated"
+			body: "*"
+		};
+	}
+
+	rpc CreateTask(CreateTaskRequest) returns (TaskResponse) {
+		option (google.api.http) = {
+			post: "/tasks"
+			body: "*"
+		};
+	}
+
+	rpc PostponeTask(PostponeTaskRequest) returns (google.protobuf.Empty) {
+		option (google.api.http) = {
+			patch: "/tasks/postponed"
+			body: "*"
+		};
+	}
+}
