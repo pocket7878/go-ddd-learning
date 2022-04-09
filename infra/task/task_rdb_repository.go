@@ -12,6 +12,8 @@ type TaskRdbRepository struct {
 	client *ent.Client
 }
 
+var _ taskDomain.TaskRepository = (*TaskRdbRepository)(nil)
+
 func NewTaskRdbRepository(client *ent.Client) *TaskRdbRepository {
 	return &TaskRdbRepository{client}
 }

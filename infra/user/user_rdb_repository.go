@@ -12,6 +12,8 @@ type UserRdbRepository struct {
 	client *ent.Client
 }
 
+var _ userDomain.UserRepository = (*UserRdbRepository)(nil)
+
 func NewUserRdbRepository(client *ent.Client) *UserRdbRepository {
 	return &UserRdbRepository{client}
 }
